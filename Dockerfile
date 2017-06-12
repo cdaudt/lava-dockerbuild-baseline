@@ -8,8 +8,7 @@ RUN \
  && echo 'lava-server   lava-server/db-server string lavadb' | debconf-set-selections \
  && echo 'locales locales/locales_to_be_generated multiselect C.UTF-8 UTF-8, en_US.UTF-8 UTF-8 ' | debconf-set-selections \
  && echo 'locales locales/default_environment_locale select en_US.UTF-8' | debconf-set-selections \
- && apt-get clean && \
- apt-get update && \
+ && apt-get update && \
  apt-get install -y wget
 
 # Add linaro staging repo
