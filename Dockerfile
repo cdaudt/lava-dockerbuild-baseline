@@ -94,3 +94,7 @@ RUN \
  python-daemon \
  python-psycopg2 \
  snmp
+
+RUN \
+ DEBIAN_FRONTEND=noninteractive apt-get install -y \
+ python-simplejson
