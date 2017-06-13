@@ -1,8 +1,7 @@
 FROM debian:jessie-backports
 
-# Install debian packages used by the container
+
 # Configure apache to run the lava server
-# Log the hostname used during install for the slave name
 RUN \
  echo 'lava-server   lava-server/instance-name string lava-docker-instance' | debconf-set-selections \
  && echo 'lava-server   lava-server/db-server string lavadb' | debconf-set-selections \
@@ -15,9 +14,10 @@ RUN \
 RUN cd /tmp && \
  wget http://images.validation.linaro.org/production-repo/production-repo.key.asc &&  \
  apt-key add production-repo.key.asc  && \
- echo "deb http://images.validation.linaro.org/production-repo sid main"  >>/etc/apt/sources.list.d/linaro.list
+ echo "deb http://images.validation.linaro.org/production-repo sid main"  >>/etc/apt/sources.list.d/linaro.list && \
+ apt-get update
 
-
+# Install debian packages used by all of the lava-* containers
 RUN \
  DEBIAN_FRONTEND=noninteractive apt-get install -y \
  cu \
@@ -73,4 +73,5 @@ RUN \
 
 RUN \
  DEBIAN_FRONTEND=noninteractive apt-get install -y \
- python-pip
+ python-pip \
+ git
