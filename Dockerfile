@@ -85,3 +85,12 @@ RUN \
  python-setuptools \
  python-setproctitle \
  tftpd-hpa
+
+RUN \
+ DEBIAN_FRONTEND=noninteractive apt-get install -y \
+ python-paramiko \
+ telnet \
+ python-pexpect \
+ python-daemon \
+ python-psycopg2 \
+ snmp
