@@ -75,3 +75,13 @@ RUN \
  DEBIAN_FRONTEND=noninteractive apt-get install -y \
  python-pip \
  git
+
+RUN \
+ DEBIAN_FRONTEND=noninteractive apt-get -t jessie-backports install -y \
+ kpartx \
+ python-sphinx \
+ python3-sphinx \
+ pep8 \
+ python-setuptools \
+ python-setproctitle \
+ tftpd-hpa
