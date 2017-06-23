@@ -1,8 +1,8 @@
 TAGNAME="lava/baseline"
-VER="latest"
 ATTEMPT=0
 NOCACHE=${1:-true}
 COPYTO=${2:-}
+VER=${3:-"latest"}
 ADMINUSER=lava-admin
 PASSWORD=`cat /home/${ADMINUSER}/.pushpw`
 LOGS=$(mktemp /tmp/buildme.XXXXXX)
@@ -15,7 +15,7 @@ function dockerpush()
   docker logout ${COPYTO}
 }
 
-echo "NOCACHE:${NOCACHE} COPYTO:${COPYTO}"
+echo "NOCACHE:${NOCACHE} COPYTO:${COPYTO} VER=${VER}"
 docker build \
   --label "build.source=`git log --oneline -1`" \
   --label "build.status=`git status --short`" \
